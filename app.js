@@ -71,9 +71,9 @@
     });
   }
 
-  // Contact form — posts to the TUDEMM backend, which saves every
-  // submission immediately. Works locally and once deployed via the proxy.
-  const API = '__PORT_8000__'.startsWith('__') ? 'http://localhost:8000' : '__PORT_8000__';
+  // Contact form — posts to the Vercel serverless function at /api/contact,
+  // which emails each submission to the TUDEMM inbox.
+  const ENDPOINT = '/api/contact';
   const form = document.querySelector('[data-contact-form]');
   if (form) {
     const fields = form.querySelector('[data-form-fields]');
@@ -116,7 +116,7 @@
       if (btnLabel) btnLabel.textContent = 'Sending\u2026';
 
       try {
-        const res = await fetch(`${API}/api/contact`, {
+        const res = await fetch(ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

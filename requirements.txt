@@ -1,0 +1,10 @@
+# Python dependencies for the Vercel serverless functions in /api.
+#
+# - stripe: used by api/checkout.py and api/webhook.py to create Checkout
+#   Sessions and verify webhook signatures.
+#
+# The contact form (api/contact.py) and the download/products/store helpers
+# use only the Python standard library (json, os, re, hmac, hashlib, base64,
+# urllib, time).
+
+stripe>=9.0.0

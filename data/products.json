@@ -1,0 +1,38 @@
+{
+  "currency": "usd",
+  "products": [
+    {
+      "id": "digital-growth-playbook",
+      "name": "The Digital Growth Playbook",
+      "category": "Growth \u00b7 E-book",
+      "description": "A step-by-step framework for small businesses to build an online presence that attracts customers and drives revenue.",
+      "price_cents": 2400,
+      "compare_at_cents": 3900,
+      "cover": "ebook1.png",
+      "file_key": "digital-growth-playbook.pdf",
+      "badge": "Bestseller"
+    },
+    {
+      "id": "build-a-website-that-works",
+      "name": "Build a Website That Works",
+      "category": "Web \u00b7 E-book",
+      "description": "What every business owner should know before launching a site \u2014 from design to conversion to going live.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook2.png",
+      "file_key": "build-a-website-that-works.pdf",
+      "badge": null
+    },
+    {
+      "id": "local-seo-starter-guide",
+      "name": "The Local SEO Starter Guide",
+      "category": "SEO \u00b7 E-book",
+      "description": "Get found by nearby customers. A practical guide to ranking your business in local search, step by step.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook3.png",
+      "file_key": "local-seo-starter-guide.pdf",
+      "badge": "New"
+    }
+  ]
+}

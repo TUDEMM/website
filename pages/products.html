@@ -36,7 +36,7 @@
                 </linearGradient>
               </defs>
             </svg>
-            <span class="brand-name">TUDEMM<small>DIGITAL STUDIO</small></span>
+            <span class="brand-name">TUDEMM<small>DIGITAL SERVICES</small></span>
           </a>
           <ul class="nav-links">
             <li><a href="./web-development.html">Web Development</a></li>
@@ -92,18 +92,18 @@
             <p class="section-lead">Each guide is designed to give you a concrete win — no fluff, just steps you can take.</p>
           </div>
 
-          <div class="grid products-grid">
+          <div class="grid products-grid" data-products-grid>
             <article class="product reveal">
               <div class="product-cover">
                 <span class="product-badge">Bestseller</span>
-                <img src="../assets/ebook1.png" alt="E-book cover: The Small Business Digital Growth Playbook" loading="lazy" />
+                <img src="../assets/ebook1.png" alt="E-book cover: The Digital Growth Playbook" loading="lazy" />
               </div>
               <span class="product-cat">Growth · E-book</span>
               <h3>The Digital Growth Playbook</h3>
               <p>A step-by-step framework for small businesses to build an online presence that attracts customers and drives revenue.</p>
               <div class="product-foot">
                 <span class="product-price">$24<small>$39</small></span>
-                <button class="btn btn-primary" type="button">Get it</button>
+                <button class="btn btn-primary" type="button" data-buy="digital-growth-playbook">Get it</button>
               </div>
             </article>
 
@@ -116,7 +116,7 @@
               <p>What every business owner should know before launching a site — from design to conversion to going live.</p>
               <div class="product-foot">
                 <span class="product-price">$19</span>
-                <button class="btn btn-primary" type="button">Get it</button>
+                <button class="btn btn-primary" type="button" data-buy="build-a-website-that-works">Get it</button>
               </div>
             </article>
 
@@ -130,17 +130,17 @@
               <p>Get found by nearby customers. A practical guide to ranking your business in local search, step by step.</p>
               <div class="product-foot">
                 <span class="product-price">$19</span>
-                <button class="btn btn-primary" type="button">Get it</button>
+                <button class="btn btn-primary" type="button" data-buy="local-seo-starter-guide">Get it</button>
               </div>
             </article>
           </div>
 
-          <!-- Checkout-coming-soon notice -->
+          <!-- Secure checkout notice -->
           <div class="notice reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             <p>
-              <strong>Secure checkout is coming soon.</strong> Want early access or a bundle for
-              your team? <a href="./contact.html" style="color: var(--color-primary); font-weight:600; text-decoration:none">Contact us</a> and we'll set you up.
+              <strong>Secure checkout by Stripe.</strong> Pay by card on a secure page and your
+              e-book is emailed to you instantly as a private download link.
             </p>
           </div>
         </div>
@@ -203,7 +203,7 @@
                 </linearGradient>
               </defs>
             </svg>
-              <span class="brand-name" style="color:#fff">TUDEMM<small>DIGITAL STUDIO</small></span>
+              <span class="brand-name" style="color:#fff">TUDEMM<small>DIGITAL SERVICES</small></span>
             </a>
             <p class="footer-about">Digital products creator and professional services firm helping organizations compete in a digital-first marketplace.</p>
           </div>
@@ -235,5 +235,6 @@
       </div>
     </footer>
     <script src="../app.js" defer></script>
+    <script src="../store.js" defer></script>
   </body>
 </html>

@@ -1,1 +1,6 @@
 data.db
+.vercel
+__pycache__/
+*.pyc
+.env
+.env.local
