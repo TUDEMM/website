@@ -1074,7 +1074,7 @@ textarea {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.8fr 1fr 1fr;
   gap: var(--space-10);
   margin-bottom: var(--space-12);
 }
