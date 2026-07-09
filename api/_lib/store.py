@@ -13,6 +13,7 @@ import hmac
 import json
 import os
 import time
+import urllib.request
 from pathlib import Path
 
 # data/products.json lives at the project root, two levels up from this file.
@@ -74,3 +75,56 @@ def verify_download_token(token: str):
         return data.get("pid")
     except Exception:
         return None
+
+
+# --- Fulfillment: deliver the secure download link by email --------------------
+# Shared by BOTH the Stripe webhook and the PayPal capture, so every paid order
+# is delivered exactly the same way regardless of which payment method was used.
+
+SITE_URL = os.environ.get("SITE_URL", "https://tudemm.com").rstrip("/")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+FROM_ADDR = os.environ.get("CONTACT_FROM", "TUDEMM <onboarding@resend.dev>")
+
+
+def deliver_download_email(to_email: str, product: dict) -> bool:
+    """Mint a fresh expiring token and email the buyer their download link.
+
+    Returns True on a successful send. Safe to call from any payment provider.
+    """
+    if not RESEND_API_KEY or not to_email or not product:
+        return False
+    token = make_download_token(product["id"])
+    link = f"{SITE_URL}/api/download?token={token}"
+    name = product["name"]
+    text = (
+        f"Thank you for your purchase from TUDEMM!\n\n"
+        f"Your e-book: {name}\n\n"
+        f"Download it here (link expires in 24 hours):\n{link}\n\n"
+        f"If your link expires, just reply to this email and we'll send a fresh one.\n"
+        f"\u2014 TUDEMM LLC"
+    )
+    html = (
+        f"<h2>Thank you for your purchase!</h2>"
+        f"<p>Your e-book: <strong>{name}</strong></p>"
+        f"<p><a href='{link}' style='background:#c4562e;color:#fff;padding:12px 22px;"
+        f"border-radius:8px;text-decoration:none;display:inline-block'>Download your e-book</a></p>"
+        f"<p style='color:#666;font-size:13px'>This link expires in 24 hours. "
+        f"If it expires, reply to this email and we'll send a fresh one.</p>"
+        f"<p>\u2014 TUDEMM LLC</p>"
+    )
+    body = {
+        "from": FROM_ADDR, "to": [to_email],
+        "subject": f"Your e-book: {name}",
+        "text": text, "html": html,
+    }
+    req = urllib.request.Request(
+        "https://api.resend.com/emails",
+        data=json.dumps(body).encode(),
+        headers={"Authorization": f"Bearer {RESEND_API_KEY}", "Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return 200 <= resp.status < 300
+    except Exception:
+        return False

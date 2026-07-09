@@ -1232,3 +1232,75 @@ textarea {
   font-size: var(--text-xs);
   letter-spacing: 0.03em;
 }
+
+/* ===== PayPal + dual payment actions (products page) ===== */
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.btn-paypal {
+  padding-inline: var(--space-4);
+}
+.btn-paypal::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 21l1.5-9h3.2c3.3 0 5.3-1.7 5.8-4.7.5-3-1.2-4.3-4.4-4.3H8.2L5 21h2zm3-11 .8-4.9h2.9c1.7 0 2.5.6 2.2 2.4-.3 1.8-1.4 2.5-3.2 2.5H10z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 21l1.5-9h3.2c3.3 0 5.3-1.7 5.8-4.7.5-3-1.2-4.3-4.4-4.3H8.2L5 21h2zm3-11 .8-4.9h2.9c1.7 0 2.5.6 2.2 2.4-.3 1.8-1.4 2.5-3.2 2.5H10z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* PayPal modal */
+.pp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 41, 41, 0.55);
+  backdrop-filter: blur(3px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: var(--space-4);
+  animation: pp-fade 0.18s ease;
+}
+@keyframes pp-fade { from { opacity: 0; } to { opacity: 1; } }
+.pp-modal {
+  position: relative;
+  width: min(420px, 100%);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-8) var(--space-6) var(--space-6);
+  text-align: center;
+}
+.pp-modal h4 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-1);
+}
+.pp-item {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-5);
+}
+.pp-note {
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+  margin-top: var(--space-4);
+}
+.pp-close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+.pp-close:hover { color: var(--color-text); }

@@ -1,5 +1,8 @@
 # Python dependencies for the Vercel serverless functions in /api.
 #
+# PayPal (api/paypal_create.py, api/paypal_capture.py) uses only the Python
+# standard library (urllib) — no extra package required.
+#
 # - stripe: used by api/checkout.py and api/webhook.py to create Checkout
 #   Sessions and verify webhook signatures.
 #

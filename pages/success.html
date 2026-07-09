@@ -152,11 +152,11 @@
     <script>
       (function () {
         var params = new URLSearchParams(window.location.search);
-        var sid = params.get("session_id");
-        if (sid) {
+        var ref = params.get("session_id") || params.get("paypal");
+        if (ref) {
           var el = document.querySelector("[data-order-ref]");
           if (el) {
-            el.textContent = "Order reference: " + sid.slice(0, 14) + "…";
+            el.textContent = "Order reference: " + ref.slice(0, 14) + "…";
             el.hidden = false;
           }
         }

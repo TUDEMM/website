@@ -153,6 +153,77 @@ delivery email, so make sure those are set too.
 
 ---
 
+## Part C — Pay with PayPal (optional second method)
+
+Alongside the Stripe "Get it" button, each product also shows a **PayPal**
+button. It runs on your own PayPal Business account and delivers the **exact
+same** secure, expiring download link as Stripe — both methods share the
+`deliver_download_email()` helper, so fulfillment is identical.
+
+### How the PayPal flow is secured
+
+1. The browser sends only the `product_id` to `/api/paypal_create`. The server
+   looks up the real price from `data/products.json` and creates the PayPal
+   order — the amount **cannot be tampered with** in the browser.
+2. The buyer approves payment in the PayPal popup.
+3. The browser sends the order id to `/api/paypal_capture`, which **captures the
+   payment directly with PayPal server-side** (the authoritative "paid" check),
+   then **re-verifies the captured amount matches the catalog price** before
+   delivering. A mismatch is rejected.
+4. On success, the buyer is emailed the same signed, expiring download link and
+   sent to the success page.
+
+> Because payment is captured and verified server-to-server with PayPal, a
+> forged browser request cannot trigger a delivery.
+
+### Step 1 — Create a PayPal Business account + REST app
+
+1. Sign up for a **PayPal Business** account at
+   [paypal.com/business](https://www.paypal.com/business) (free).
+2. Go to the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/)
+   and log in with that account.
+3. Under **Apps & Credentials**, make sure you're on the **Sandbox** toggle
+   first (for testing), then click **Create App**. Name it e.g. `tudemm-store`.
+4. Copy the app's **Client ID** and **Secret**. (Switch the toggle to **Live**
+   later to get your real production Client ID/Secret.)
+
+### Step 2 — Add the PayPal environment variables in Vercel
+
+Vercel → project → **Settings → Environment Variables**, in addition to the
+Stripe vars:
+
+| Name                   | Value / example                                          |
+| ---------------------- | -------------------------------------------------------- |
+| `PAYPAL_CLIENT_ID`     | your PayPal app **Client ID** (public — also sent to the browser) |
+| `PAYPAL_CLIENT_SECRET` | your PayPal app **Secret** (kept server-side only)       |
+| `PAYPAL_ENV`           | `sandbox` while testing, `live` for real money           |
+
+The PayPal button only appears on the storefront when `PAYPAL_CLIENT_ID` is set,
+so the site works fine with Stripe alone until you add these. PayPal reuses your
+existing `DOWNLOAD_SECRET`, `RESEND_API_KEY`, `CONTACT_FROM`, `SITE_URL`, and
+`FILES_BASE_URL` — nothing extra needed. **Redeploy** after adding them.
+
+### Step 3 — Test in sandbox
+
+1. With `PAYPAL_ENV=sandbox` and your **sandbox** Client ID/Secret set, open
+   `https://tudemm.com/pages/products.html` and click **PayPal** on a product.
+2. Log in with a [PayPal sandbox test buyer](https://developer.paypal.com/dashboard/accounts)
+   account and approve the payment.
+3. You should land on the success page and receive the e-book email within a
+   minute.
+
+### Step 4 — Go live
+
+1. In the PayPal Developer Dashboard, switch to **Live** and create/copy your
+   **live** Client ID and Secret.
+2. Update `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, and set `PAYPAL_ENV=live`
+   in Vercel, then **redeploy**.
+
+> **Fees:** PayPal's standard rate is ~3.49% + $0.49 per transaction in the US
+> (a bit higher than Stripe). You can offer both and let buyers choose.
+
+---
+
 ## Connect your domain
 Vercel → **Settings → Domains** → add `tudemm.com` and add the DNS records at
 GoDaddy (A record `@ → 76.76.21.21`, CNAME `www → cname.vercel-dns.com`).
