@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 .env
 .env.local
+
+# Real product PDFs must live in private storage, never in this public repo.
+data/ebooks/*.pdf

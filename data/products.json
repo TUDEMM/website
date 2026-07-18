@@ -33,6 +33,61 @@
       "cover": "ebook3.png",
       "file_key": "local-seo-starter-guide.pdf",
       "badge": "New"
+    },
+    {
+      "id": "hormonal-balance-natural-remedies",
+      "name": "Natural Remedies for Female Hormonal Balance",
+      "category": "Health & Wellness \u00b7 E-book",
+      "description": "A woman's guide to supporting hormonal balance naturally \u2014 cycle-friendly nutrition, adaptogenic herbs, and lifestyle strategies grounded in research.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook4.png",
+      "file_key": "hormonal-balance-natural-remedies.pdf",
+      "badge": "New"
+    },
+    {
+      "id": "mens-vitality-natural-remedies",
+      "name": "Natural Remedies for Erectile Dysfunction",
+      "category": "Health & Wellness \u00b7 E-book",
+      "description": "A men's guide to naturally supporting blood flow, energy, and performance \u2014 plus the cardiovascular red flags every man should know.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook5.png",
+      "file_key": "mens-vitality-natural-remedies.pdf",
+      "badge": "New"
+    },
+    {
+      "id": "calisthenics-30-day-plan",
+      "name": "The 30-Day Calisthenics Challenge",
+      "category": "Health & Wellness \u00b7 E-book",
+      "description": "A day-by-day, no-equipment bodyweight training plan built for every age and fitness level \u2014 from beginner-friendly moves to progressive strength gains.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook6.png",
+      "file_key": "calisthenics-30-day-plan.pdf",
+      "badge": "New"
+    },
+    {
+      "id": "blood-pressure-natural-remedies",
+      "name": "Natural Remedies for High Blood Pressure",
+      "category": "Health & Wellness \u00b7 E-book",
+      "description": "A heart-healthy guide to naturally supporting healthy blood pressure through the DASH diet, movement, and stress-reduction strategies.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook7.png",
+      "file_key": "blood-pressure-natural-remedies.pdf",
+      "badge": "New"
+    },
+    {
+      "id": "cognitive-function-natural-remedies",
+      "name": "Natural Remedies to Improve Cognitive Function",
+      "category": "Health & Wellness \u00b7 E-book",
+      "description": "A brain health guide to naturally sharpening memory and focus through nutrition, movement, sleep, and mentally engaging habits.",
+      "price_cents": 1900,
+      "compare_at_cents": null,
+      "cover": "ebook8.png",
+      "file_key": "cognitive-function-natural-remedies.pdf",
+      "badge": "New"
     }
   ]
 }
