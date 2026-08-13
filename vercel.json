@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/api/contact", "destination": "/api/contact" },
-    { "source": "/sitemap", "destination": "/pages/sitemap.html" }
+    { "source": "/sitemap", "destination": "/pages/sitemap" }
   ],
   "headers": [
     {
