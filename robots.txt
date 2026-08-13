@@ -1,0 +1,12 @@
+# robots.txt for tudemm.com — TUDEMM LLC
+
+User-agent: *
+Allow: /
+
+# Transactional / private endpoints — no SEO value, keep out of the index
+Disallow: /api/
+Disallow: /pages/success
+Disallow: /pages/success.html
+Disallow: /data/
+
+Sitemap: https://tudemm.com/sitemap.xml
