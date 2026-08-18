@@ -1,0 +1,213 @@
+{
+  "_comment": "Build-time editorial copy for the individual product pages. Edit this file, then run: python tools/build_product_pages.py  — this regenerates /ebooks/*.html. Keys match the product 'id' in products.json. This file is NOT served by /api/products; it is build-time only.",
+
+  "_shared": {
+    "disclaimer_heading": "A note on health information",
+    "disclaimer": "This e-book is educational material, not medical advice. It is not intended to diagnose, treat, cure, or prevent any disease. Always talk with a qualified healthcare provider before changing your diet, starting a supplement or herb, or beginning a new exercise programme — especially if you are pregnant, nursing, managing a diagnosed condition, or taking prescription medication. Never stop or adjust a prescribed medication without your provider's guidance.",
+    "delivery": [
+      {
+        "title": "Instant digital delivery",
+        "body": "Your private download link is emailed to you the moment your payment clears — no waiting, no shipping."
+      },
+      {
+        "title": "PDF you can read anywhere",
+        "body": "Read it on your phone, tablet, laptop, or e-reader, and print the pages you want to keep beside you."
+      },
+      {
+        "title": "Secure checkout",
+        "body": "Pay by card through Stripe or with PayPal. Your payment details go straight to the processor — TUDEMM never sees your card number."
+      },
+      {
+        "title": "Yours to keep",
+        "body": "A one-time purchase with no subscription. If your download link ever expires, email us and we will send a fresh one."
+      }
+    ],
+    "faq": [
+      {
+        "q": "How do I get the e-book after I pay?",
+        "a": "As soon as your payment is confirmed, we email a private, secure download link to the address you used at checkout. The link is valid for 24 hours — if it expires before you download, just reply to that email and we will send you a fresh one."
+      },
+      {
+        "q": "What format is the e-book?",
+        "a": "A PDF. It opens on virtually any device — iPhone and Android, Windows and Mac, tablets, and most e-readers — and you can print it if you prefer paper."
+      },
+      {
+        "q": "Do I need to create an account?",
+        "a": "No. There is no account to make and no subscription. You check out, you get your download link by email, and the book is yours."
+      },
+      {
+        "q": "Is checkout secure?",
+        "a": "Yes. Card payments are handled by Stripe and processed on Stripe's own secure page, and PayPal payments are handled by PayPal. Your card details are never sent to or stored by TUDEMM."
+      },
+      {
+        "q": "I did not get my email. What should I do?",
+        "a": "Check your spam and promotions folders first, since automated delivery emails sometimes land there. If it still has not arrived, email info@tudemm.com with the address you used and we will get your download to you."
+      }
+    ]
+  },
+
+  "hormonal-balance-natural-remedies": {
+    "slug": "natural-remedies-female-hormonal-balance",
+    "seo_title": "Natural Remedies for Female Hormonal Balance — E-book",
+    "meta_description": "A woman's guide to supporting hormonal balance naturally: cycle-friendly nutrition, adaptogenic herbs, and research-grounded lifestyle strategies. Instant PDF download.",
+    "tagline": "Work with your cycle instead of against it.",
+    "intro": "Hormonal shifts shape your energy, your mood, your sleep, and your skin — and yet most women are handed very little practical guidance on how daily habits influence them. This guide gathers the nutrition, herbal, and lifestyle approaches most often used to support hormonal balance, explains the reasoning behind each one in plain language, and shows you how to fit them into a normal week.",
+    "covers": [
+      {
+        "title": "Cycle-friendly nutrition",
+        "body": "How the food on your plate interacts with each phase of your cycle, and how to eat in a way that supports your body rather than fighting it."
+      },
+      {
+        "title": "Adaptogenic herbs",
+        "body": "An introduction to the adaptogens most commonly used for hormonal support — what they are, how they are traditionally taken, and what to be careful about."
+      },
+      {
+        "title": "Lifestyle strategies",
+        "body": "The sleep, stress, and movement habits that influence hormone regulation, and small changes that are realistic to sustain."
+      },
+      {
+        "title": "Grounded in research",
+        "body": "Guidance drawn from published research rather than passing wellness trends, so you can tell the difference between evidence and marketing."
+      }
+    ],
+    "audience": [
+      "Women who want to understand what is actually driving their energy, mood, and cycle symptoms",
+      "Anyone who prefers to start with food, sleep, and movement before anything else",
+      "Readers who want the reasoning explained, not just a list of supplements to buy",
+      "Women preparing for a doctor's appointment who want to walk in better informed"
+    ],
+    "keywords": "natural remedies for hormonal balance, female hormone balance, cycle syncing nutrition, adaptogenic herbs for hormones, women's hormonal health e-book"
+  },
+
+  "mens-vitality-natural-remedies": {
+    "slug": "natural-remedies-erectile-dysfunction",
+    "seo_title": "Natural Remedies for Erectile Dysfunction — E-book",
+    "meta_description": "A men's guide to naturally supporting blood flow, energy, and performance — plus the cardiovascular warning signs every man should know. Instant PDF download.",
+    "tagline": "Start with the cause, not the symptom.",
+    "intro": "Erectile difficulty is common, it is treatable, and it is very often a circulation story before it is anything else. This guide takes the subject seriously and without embarrassment: it explains how blood flow, energy, and performance are connected, walks through the natural approaches men most often turn to, and is direct about the cardiovascular warning signs that mean you should stop reading and book an appointment.",
+    "covers": [
+      {
+        "title": "Blood flow fundamentals",
+        "body": "Why circulation sits at the centre of the conversation, and which daily habits help or hinder it."
+      },
+      {
+        "title": "Energy and performance",
+        "body": "How sleep, body composition, alcohol, and stress feed into energy levels and physical performance."
+      },
+      {
+        "title": "Natural approaches",
+        "body": "The nutrition, movement, and lifestyle strategies most commonly used to support vascular health — and honest limits on what each can do."
+      },
+      {
+        "title": "Cardiovascular red flags",
+        "body": "The signs that what you are experiencing may point to an underlying heart or vascular issue, and why that makes a medical visit urgent rather than optional."
+      }
+    ],
+    "audience": [
+      "Men who want to understand the underlying causes rather than only manage a symptom",
+      "Anyone who would rather begin with diet, exercise, and sleep changes",
+      "Readers who want to know which warning signs genuinely warrant a doctor's visit",
+      "Partners who want to understand what is going on and how to help"
+    ],
+    "keywords": "natural remedies for erectile dysfunction, ED natural treatment, blood flow and ED, men's vitality e-book, cardiovascular warning signs ED"
+  },
+
+  "calisthenics-30-day-plan": {
+    "slug": "30-day-calisthenics-challenge",
+    "seo_title": "The 30-Day Calisthenics Challenge — Bodyweight Plan E-book",
+    "meta_description": "A day-by-day, no-equipment bodyweight training plan for every age and fitness level — from beginner-friendly moves to progressive strength gains. Instant PDF download.",
+    "tagline": "Thirty days. No gym. No equipment.",
+    "intro": "The hardest part of getting stronger is deciding what to do each day. This plan removes that decision entirely: thirty days mapped out session by session, using nothing but your own bodyweight. Every movement comes with an easier and a harder version, so the same plan works whether you are starting from the couch or already training — and whether you are twenty-five or sixty-five.",
+    "covers": [
+      {
+        "title": "A day-by-day 30-day plan",
+        "body": "Every session laid out in order, so you always know exactly what today's workout is before you start."
+      },
+      {
+        "title": "No equipment required",
+        "body": "Built entirely around bodyweight movement. No gym membership, no dumbbells, and enough floor space to lie down is all you need."
+      },
+      {
+        "title": "Scaled for every age and level",
+        "body": "Each exercise includes a gentler regression and a harder progression, so the plan meets you where you actually are today."
+      },
+      {
+        "title": "Progressive strength gains",
+        "body": "The difficulty builds deliberately across the month, so week four asks more of you than week one and the gains keep coming."
+      }
+    ],
+    "audience": [
+      "Complete beginners who want structure instead of guesswork",
+      "Anyone training at home, travelling, or without access to a gym",
+      "Returning exercisers rebuilding a habit after time away",
+      "Older adults who want strength work that can be scaled sensibly"
+    ],
+    "keywords": "30 day calisthenics challenge, bodyweight workout plan, no equipment home workout, calisthenics for beginners, progressive bodyweight training"
+  },
+
+  "blood-pressure-natural-remedies": {
+    "slug": "natural-remedies-high-blood-pressure",
+    "seo_title": "Natural Remedies for High Blood Pressure — E-book",
+    "meta_description": "A heart-healthy guide to naturally supporting healthy blood pressure through the DASH diet, movement, and stress-reduction strategies. Instant PDF download.",
+    "tagline": "The habits behind a healthier number.",
+    "intro": "High blood pressure is famously quiet — it rarely announces itself, which is exactly what makes it worth taking seriously. This guide focuses on the three levers with the strongest track record behind them: what you eat, how you move, and how you handle stress. It explains the DASH approach in practical terms and turns it into changes you can actually keep up.",
+    "covers": [
+      {
+        "title": "The DASH diet, made practical",
+        "body": "What the DASH eating pattern actually asks of you, translated into real meals, shopping decisions, and swaps rather than abstract rules."
+      },
+      {
+        "title": "Movement that helps",
+        "body": "The kind and amount of activity most associated with healthier blood pressure, and how to build up to it without overdoing it."
+      },
+      {
+        "title": "Stress reduction",
+        "body": "Why stress and sleep belong in a blood pressure conversation, and simple techniques you can use in an ordinary day."
+      },
+      {
+        "title": "Heart-healthy habits",
+        "body": "The everyday factors — sodium, alcohol, weight, and consistency — that quietly move the number in one direction or the other."
+      }
+    ],
+    "audience": [
+      "Anyone who has been told their blood pressure is higher than it should be",
+      "Readers who want to support the treatment plan their doctor has already given them",
+      "People with high blood pressure in the family who would rather act early",
+      "Anyone who wants the DASH diet explained without the clinical jargon"
+    ],
+    "keywords": "natural remedies for high blood pressure, DASH diet guide, lower blood pressure naturally, hypertension lifestyle changes, heart healthy e-book"
+  },
+
+  "cognitive-function-natural-remedies": {
+    "slug": "natural-remedies-cognitive-function",
+    "seo_title": "Natural Remedies to Improve Cognitive Function — E-book",
+    "meta_description": "A brain health guide to naturally sharpening memory and focus through nutrition, movement, sleep, and mentally engaging habits. Instant PDF download.",
+    "tagline": "Sharper focus starts with unglamorous basics.",
+    "intro": "Memory and focus are not fixed traits, and the levers that influence them most are far less exotic than the supplement aisle suggests. This guide covers the four that matter: what you eat, how much you move, how well you sleep, and how often you genuinely challenge your mind. It explains why each one matters and how to put all four to work together.",
+    "covers": [
+      {
+        "title": "Brain-supporting nutrition",
+        "body": "The dietary patterns and specific foods most associated with long-term cognitive health, and how to build them into normal meals."
+      },
+      {
+        "title": "Movement and blood flow",
+        "body": "Why physical activity keeps turning up in cognitive research, and how much of it appears to make a difference."
+      },
+      {
+        "title": "Sleep as maintenance",
+        "body": "What your brain does while you sleep, why short-changing it shows up as poor recall and fog, and how to protect your nights."
+      },
+      {
+        "title": "Mentally engaging habits",
+        "body": "The difference between passive entertainment and genuine mental challenge, and how to build the kind that keeps you sharp."
+      }
+    ],
+    "audience": [
+      "Anyone noticing more forgetfulness, mental fog, or trouble concentrating",
+      "Adults who want to protect their cognitive health as they get older",
+      "Students and professionals looking for sustainable focus rather than stimulants",
+      "People with dementia in the family who want to understand the modifiable factors"
+    ],
+    "keywords": "natural remedies for cognitive function, improve memory naturally, brain health diet, focus and concentration guide, brain fog e-book"
+  }
+}

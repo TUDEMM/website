@@ -14,6 +14,12 @@
     return '$' + (cents / 100).toFixed(cents % 100 === 0 ? 0 : 2);
   }
 
+  /* Detail-page URL for a product. The server sends `slug`; fall back to the id
+     so the grid still links somewhere sane if a slug is ever missing. */
+  function detailUrl(p) {
+    return '/ebooks/' + (p.slug || p.id);
+  }
+
   function card(p) {
     var badge = p.badge ? '<span class="product-badge">' + p.badge + '</span>' : '';
     var compare = p.compare_at_cents ? '<small>' + money(p.compare_at_cents) + '</small>' : '';
@@ -21,17 +27,19 @@
       ? '<button class="btn btn-ghost btn-paypal" type="button" data-paypal="' + p.id +
         '" aria-label="Pay with PayPal">PayPal</button>'
       : '';
+    var href = detailUrl(p);
     return '' +
       '<article class="product reveal in">' +
-        '<div class="product-cover">' + badge +
-          '<img src="../assets/' + p.cover + '" alt="E-book cover: ' + p.name + '" loading="lazy" />' +
-        '</div>' +
+        '<a class="product-cover" href="' + href + '" aria-label="' + p.name + ' — details">' + badge +
+          '<img src="/assets/' + p.cover + '" alt="E-book cover: ' + p.name + '" loading="lazy" />' +
+        '</a>' +
         '<span class="product-cat">' + p.category + '</span>' +
-        '<h3>' + p.name + '</h3>' +
+        '<h3><a href="' + href + '">' + p.name + '</a></h3>' +
         '<p>' + p.description + '</p>' +
         '<div class="product-foot">' +
           '<span class="product-price">' + money(p.price_cents) + compare + '</span>' +
           '<div class="product-actions">' +
+            '<a class="btn btn-ghost" href="' + href + '">Details</a>' +
             '<button class="btn btn-primary" type="button" data-buy="' + p.id + '">Get it</button>' +
             paypalBtn +
           '</div>' +
@@ -150,9 +158,31 @@
     });
   }
 
+  /* Single-product detail pages (/ebooks/*) ship their buy buttons in static
+     HTML for SEO, so there is no grid to render — we only need to learn whether
+     PayPal is configured and then wire the existing buttons up. */
+  async function initDetailPage() {
+    try {
+      var res = await fetch('/api/products');
+      var data = await res.json();
+      PAYPAL.clientId = data.paypal_client_id || '';
+      PAYPAL.env = data.paypal_env || 'sandbox';
+    } catch (e) { /* checkout still works without PayPal */ }
+
+    if (PAYPAL.clientId) {
+      document.querySelectorAll('[data-paypal]').forEach(function (btn) {
+        btn.hidden = false;
+      });
+    }
+    bindButtons(document);
+  }
+
   document.addEventListener('DOMContentLoaded', async function () {
     var grid = document.querySelector('[data-products-grid]');
-    if (!grid) return;
+    if (!grid) {
+      if (document.querySelector('[data-buy]')) initDetailPage();
+      return;
+    }
     try {
       var res = await fetch('/api/products');
       var data = await res.json();

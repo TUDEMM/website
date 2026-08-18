@@ -25,6 +25,8 @@ class handler(BaseHTTPRequestHandler):
         for p in catalog.get("products", []):
             public.append({
                 "id": p["id"],
+                # Slug powers the /ebooks/<slug> detail-page links in the grid.
+                "slug": p.get("slug", p["id"]),
                 "name": p["name"],
                 "category": p.get("category", ""),
                 "description": p.get("description", ""),
