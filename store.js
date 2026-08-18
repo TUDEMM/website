@@ -94,6 +94,10 @@
         '<p class="pp-item">' + productName + '</p>' +
         '<div class="pp-buttons" id="pp-buttons"></div>' +
         '<p class="pp-note">You\'ll get a secure download link by email after payment.</p>' +
+        '<p class="pp-terms">This is an instant digital download. By paying you ask us to ' +
+          'deliver it immediately and you acknowledge that <strong>all sales are final</strong> ' +
+          '\u2014 no refunds once the file has been downloaded. ' +
+          '<a href="/pages/refunds" target="_blank" rel="noopener">Refund policy</a>.</p>' +
       '</div>';
     document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
@@ -126,8 +130,12 @@
           }).then(function (r) { return r.json(); }).then(function (d) {
             if (d.status === 'COMPLETED') {
               close();
-              window.location.href = '/pages/success.html?paypal=' +
-                encodeURIComponent(data.orderID);
+              var to = '/pages/success.html?paypal=' + encodeURIComponent(data.orderID);
+              // Payment succeeded but the email did not send. Tell the buyer
+              // plainly instead of sending them to wait for a mail that is
+              // never coming.
+              if (d.delivered === false) to += '&undelivered=1';
+              window.location.href = to;
             } else {
               alert(d.error || 'Payment could not be completed.');
             }

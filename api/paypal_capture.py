@@ -80,6 +80,15 @@ class handler(BaseHTTPRequestHandler):
                 headers={
                     "Authorization": f"Bearer {token}",
                     "Content-Type": "application/json",
+                    # WITHOUT this, PayPal defaults to `Prefer: return=minimal`
+                    # and sends back only {id, status, links} — no purchase_units
+                    # and no payer email, so we could not identify the product or
+                    # deliver the file. Do not remove.
+                    "Prefer": "return=representation",
+                    # Idempotency: if the browser retries (flaky network, double
+                    # click), PayPal returns the original capture instead of
+                    # charging again.
+                    "PayPal-Request-Id": f"capture-{order_id}",
                 },
                 method="POST",
             )
@@ -95,14 +104,28 @@ class handler(BaseHTTPRequestHandler):
             return self._respond(402, {"error": "Payment was not completed."})
 
         # Pull the product id and paid amount straight from PayPal's response.
+        # `custom_id` is documented at BOTH purchase_units[].custom_id and
+        # purchase_units[].payments.captures[].custom_id; which one is populated
+        # varies, so check the capture first and fall back to the unit, then to
+        # reference_id (which we also set to the product id on create).
         try:
             unit = result["purchase_units"][0]
-            product_id = unit.get("custom_id") or unit.get("reference_id")
             cap = unit["payments"]["captures"][0]
+            ref = unit.get("reference_id")
+            product_id = (
+                cap.get("custom_id")
+                or unit.get("custom_id")
+                or (ref if ref and ref != "default" else "")
+            )
             paid_value = cap["amount"]["value"]
             paid_currency = cap["amount"]["currency_code"].upper()
+            capture_id = cap.get("id", "")
         except Exception:
             return self._respond(502, {"error": "Unexpected PayPal response."})
+
+        # The capture-level status is the authoritative one for the money.
+        if cap.get("status") not in ("COMPLETED", "PENDING"):
+            return self._respond(402, {"error": "Payment was not completed."})
 
         product = get_product(product_id)
         if not product:
@@ -116,6 +139,32 @@ class handler(BaseHTTPRequestHandler):
 
         # Buyer email from PayPal, then deliver the secure download link.
         email = ((result.get("payer") or {}).get("email_address")) or ""
+        if not email:
+            # Rare, but the capture payload can omit the payer block. Fall back
+            # to reading the order so a paying customer still gets their file.
+            try:
+                req = urllib.request.Request(
+                    f"{PAYPAL_API}/v2/checkout/orders/{order_id}",
+                    headers={"Authorization": f"Bearer {token}"},
+                )
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    order = json.loads(resp.read())
+                email = ((order.get("payer") or {}).get("email_address")) or ""
+            except Exception:  # noqa: BLE001
+                email = ""
+
         delivered = deliver_download_email(email, product) if email else False
 
-        return self._respond(200, {"status": "COMPLETED", "delivered": delivered})
+        # Log enough to reconcile and re-send by hand if delivery ever fails.
+        if not delivered:
+            print(
+                f"[paypal] DELIVERY FAILED order={order_id} capture={capture_id} "
+                f"product={product_id} email={'set' if email else 'MISSING'}",
+                file=sys.stderr,
+            )
+
+        return self._respond(200, {
+            "status": "COMPLETED",
+            "delivered": delivered,
+            "email": email,
+        })

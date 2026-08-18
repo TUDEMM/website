@@ -98,6 +98,12 @@
             </div>
 
             <p class="confirm-order" data-order-ref hidden></p>
+            <p class="confirm-warn" data-undelivered hidden>
+              Your payment went through, but we could not send the download
+              email automatically. Please email
+              <a href="mailto:info@tudemm.com">info@tudemm.com</a> with your
+              order reference and we will send your file straight away.
+            </p>
           </div>
         </div>
       </section>
@@ -163,6 +169,13 @@
       (function () {
         var params = new URLSearchParams(window.location.search);
         var ref = params.get("session_id") || params.get("paypal");
+
+        /* Payment cleared but the delivery email failed. Say so plainly and
+           point the buyer at support rather than letting them wait. */
+        if (params.get("undelivered") === "1") {
+          var warn = document.querySelector("[data-undelivered]");
+          if (warn) warn.hidden = false;
+        }
         if (ref) {
           var el = document.querySelector("[data-order-ref]");
           if (el) {

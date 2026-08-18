@@ -183,7 +183,10 @@ section {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -1242,6 +1245,26 @@ textarea {
   letter-spacing: 0.03em;
 }
 
+/* Shown only when payment succeeded but the delivery email failed. */
+.confirm-warn {
+  margin-top: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid oklch(from var(--color-gold) l c h / 0.35);
+  border-left: 4px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  background: var(--color-gold-highlight);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  text-align: left;
+}
+.confirm-warn a {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ===== PayPal + dual payment actions (products page) ===== */
 .product-actions {
   display: flex;
@@ -1269,6 +1292,10 @@ textarea {
 .pp-overlay {
   position: fixed;
   inset: 0;
+  /* The site has no global border-box reset, so without this the 16px padding
+     is added OUTSIDE the inset:0 box and the modal renders wider than the
+     viewport on phones. Scoped here deliberately, not applied globally. */
+  box-sizing: border-box;
   background: rgba(30, 41, 41, 0.55);
   backdrop-filter: blur(3px);
   display: grid;
@@ -1280,6 +1307,9 @@ textarea {
 @keyframes pp-fade { from { opacity: 0; } to { opacity: 1; } }
 .pp-modal {
   position: relative;
+  /* Also needs border-box (no global reset): its own horizontal padding would
+     otherwise be added outside the 420px width, making the modal 468px. */
+  box-sizing: border-box;
   width: min(420px, 100%);
   background: var(--color-surface);
   border-radius: var(--radius-xl);
@@ -1297,9 +1327,34 @@ textarea {
   margin-bottom: var(--space-5);
 }
 .pp-note {
-  color: var(--color-text-faint);
+  color: var(--color-text-muted);
   font-size: var(--text-xs);
   margin-top: var(--space-4);
+}
+/* Pre-payment refund acknowledgement in the PayPal modal. Mirrors the
+   custom_text shown above Stripe's pay button so both providers disclose
+   the no-refund terms before money moves. */
+.pp-terms {
+  /* Full text colour, not muted: this is the pre-payment disclosure the buyer
+     is asked to accept, so it must clear WCAG AA at this small size. */
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+}
+.pp-terms strong {
+  color: var(--color-text);
+}
+.pp-terms a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pp-terms a:hover {
+  color: var(--color-primary);
 }
 .pp-close {
   position: absolute;
