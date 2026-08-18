@@ -51,26 +51,48 @@ class handler(BaseHTTPRequestHandler):
             return self._respond(404, {"error": "Product not found."})
 
         currency = load_catalog().get("currency", "usd")
-        try:
-            session = stripe.checkout.Session.create(
-                mode="payment",
-                line_items=[{
-                    "price_data": {
-                        "currency": currency,
-                        "unit_amount": product["price_cents"],  # trusted, server-side
-                        "product_data": {
-                            "name": product["name"],
-                            "description": product.get("category", ""),
-                        },
+
+        # Shown directly above the pay button on Stripe Checkout. Digital content
+        # is only exempt from statutory cancellation rights where the buyer gave
+        # express prior consent to immediate delivery AND acknowledged losing that
+        # right, so the acknowledgement has to appear before payment, not after.
+        REFUND_ACK = (
+            "This is an instant digital download. By paying you ask us to deliver "
+            "it immediately and you acknowledge that all sales are final \u2014 no "
+            "refunds once the file has been downloaded. "
+            f"Full policy: {SITE_URL}/pages/refunds"
+        )
+
+        params = {
+            "mode": "payment",
+            "line_items": [{
+                "price_data": {
+                    "currency": currency,
+                    "unit_amount": product["price_cents"],  # trusted, server-side
+                    "product_data": {
+                        "name": product["name"],
+                        "description": product.get("category", ""),
                     },
-                    "quantity": 1,
-                }],
-                metadata={"product_id": product_id},
-                # Collect the buyer's email so we can deliver the file.
-                customer_creation="always",
-                success_url=f"{SITE_URL}/pages/success.html?session_id={{CHECKOUT_SESSION_ID}}",
-                cancel_url=f"{SITE_URL}/pages/products.html",
-            )
+                },
+                "quantity": 1,
+            }],
+            "metadata": {"product_id": product_id},
+            # Collect the buyer's email so we can deliver the file.
+            "customer_creation": "always",
+            "success_url": f"{SITE_URL}/pages/success.html?session_id={{CHECKOUT_SESSION_ID}}",
+            "cancel_url": f"{SITE_URL}/pages/products.html",
+            "custom_text": {"submit": {"message": REFUND_ACK}},
+        }
+
+        try:
+            try:
+                session = stripe.checkout.Session.create(**params)
+            except Exception:
+                # Never let an optional display field block a sale: if this Stripe
+                # API version rejects custom_text, retry without it. The on-page
+                # notice and the refund policy page still apply.
+                params.pop("custom_text", None)
+                session = stripe.checkout.Session.create(**params)
             return self._respond(200, {"url": session.url})
         except Exception as e:  # noqa: BLE001
             return self._respond(502, {"error": f"Could not start checkout: {e}"})

@@ -1,6 +1,5 @@
 {
   "_comment": "Build-time editorial copy for the individual product pages. Edit this file, then run: python tools/build_product_pages.py  — this regenerates /ebooks/*.html. Keys match the product 'id' in products.json. This file is NOT served by /api/products; it is build-time only.",
-
   "_shared": {
     "disclaimer_heading": "A note on health information",
     "disclaimer": "This e-book is educational material, not medical advice. It is not intended to diagnose, treat, cure, or prevent any disease. Always talk with a qualified healthcare provider before changing your diet, starting a supplement or herb, or beginning a new exercise programme — especially if you are pregnant, nursing, managing a diagnosed condition, or taking prescription medication. Never stop or adjust a prescribed medication without your provider's guidance.",
@@ -42,10 +41,13 @@
       {
         "q": "I did not get my email. What should I do?",
         "a": "Check your spam and promotions folders first, since automated delivery emails sometimes land there. If it still has not arrived, email info@tudemm.com with the address you used and we will get your download to you."
+      },
+      {
+        "q": "Can I get a refund?",
+        "a": "No. Because this is an instant digital download that you keep, all sales are final and we do not offer refunds once the file has been downloaded. We will of course fix a duplicate charge or a delivery problem — email info@tudemm.com. If you are unsure whether this guide is right for you, please ask us before you buy."
       }
     ]
   },
-
   "hormonal-balance-natural-remedies": {
     "slug": "natural-remedies-female-hormonal-balance",
     "seo_title": "Natural Remedies for Female Hormonal Balance — E-book",
@@ -78,7 +80,6 @@
     ],
     "keywords": "natural remedies for hormonal balance, female hormone balance, cycle syncing nutrition, adaptogenic herbs for hormones, women's hormonal health e-book"
   },
-
   "mens-vitality-natural-remedies": {
     "slug": "natural-remedies-erectile-dysfunction",
     "seo_title": "Natural Remedies for Erectile Dysfunction — E-book",
@@ -111,7 +112,6 @@
     ],
     "keywords": "natural remedies for erectile dysfunction, ED natural treatment, blood flow and ED, men's vitality e-book, cardiovascular warning signs ED"
   },
-
   "calisthenics-30-day-plan": {
     "slug": "30-day-calisthenics-challenge",
     "seo_title": "The 30-Day Calisthenics Challenge — Bodyweight Plan E-book",
@@ -144,7 +144,6 @@
     ],
     "keywords": "30 day calisthenics challenge, bodyweight workout plan, no equipment home workout, calisthenics for beginners, progressive bodyweight training"
   },
-
   "blood-pressure-natural-remedies": {
     "slug": "natural-remedies-high-blood-pressure",
     "seo_title": "Natural Remedies for High Blood Pressure — E-book",
@@ -177,7 +176,6 @@
     ],
     "keywords": "natural remedies for high blood pressure, DASH diet guide, lower blood pressure naturally, hypertension lifestyle changes, heart healthy e-book"
   },
-
   "cognitive-function-natural-remedies": {
     "slug": "natural-remedies-cognitive-function",
     "seo_title": "Natural Remedies to Improve Cognitive Function — E-book",

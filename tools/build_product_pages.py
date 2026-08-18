@@ -39,6 +39,7 @@ STATIC_PAGES = [
     ("/pages/products", "weekly", "0.9"),
     ("/pages/about", "monthly", "0.7"),
     ("/pages/contact", "monthly", "0.8"),
+    ("/pages/refunds", "yearly", "0.3"),
     ("/pages/sitemap", "monthly", "0.3"),
 ]
 
@@ -112,6 +113,13 @@ def main() -> None:
             "category": product.get("category", ""),
             "url": url,
             "brand": {"@type": "Brand", "name": "TUDEMM"},
+            # Downloaded digital goods are non-returnable. See /pages/refunds.
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "US",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+                "url": f"{SITE}/pages/refunds",
+            },
             "publisher": {"@type": "Organization", "name": "TUDEMM LLC", "url": SITE},
             "isFamilyFriendly": True,
             "offers": offer,

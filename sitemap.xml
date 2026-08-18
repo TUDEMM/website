@@ -45,6 +45,13 @@
   </url>
 
   <url>
+    <loc>https://tudemm.com/pages/refunds</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
     <loc>https://tudemm.com/pages/sitemap</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>monthly</changefreq>
