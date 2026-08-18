@@ -14,7 +14,7 @@
       },
       {
         "title": "Secure checkout",
-        "body": "Pay by card through Stripe or with PayPal. Your payment details go straight to the processor — TUDEMM never sees your card number."
+        "body": "Pay by card through Stripe. Your payment details go straight to the processor — TUDEMM never sees your card number."
       },
       {
         "title": "Yours to keep",
@@ -36,7 +36,7 @@
       },
       {
         "q": "Is checkout secure?",
-        "a": "Yes. Card payments are handled by Stripe and processed on Stripe's own secure page, and PayPal payments are handled by PayPal. Your card details are never sent to or stored by TUDEMM."
+        "a": "Yes. Card payments are handled by Stripe and processed on Stripe's own secure page. Your card details are never sent to or stored by TUDEMM."
       },
       {
         "q": "I did not get my email. What should I do?",
