@@ -4,7 +4,7 @@
     {
       "id": "hormonal-balance-natural-remedies",
       "slug": "natural-remedies-female-hormonal-balance",
-      "name": "Natural Remedies for Female Hormonal Balance",
+      "name": "The Natural Guide to Female Hormonal Balance",
       "category": "Health & Wellness · E-book",
       "description": "A woman's guide to supporting hormonal balance naturally — cycle-friendly nutrition, adaptogenic herbs, and lifestyle strategies grounded in research.",
       "price_cents": 1900,
@@ -16,7 +16,7 @@
     {
       "id": "mens-vitality-natural-remedies",
       "slug": "natural-remedies-erectile-dysfunction",
-      "name": "Natural Remedies for Erectile Dysfunction",
+      "name": "The Men's Guide to Blood Flow, Energy & Vitality",
       "category": "Health & Wellness · E-book",
       "description": "A men's guide to naturally supporting blood flow, energy, and performance — plus the cardiovascular red flags every man should know.",
       "price_cents": 1900,
@@ -40,7 +40,7 @@
     {
       "id": "blood-pressure-natural-remedies",
       "slug": "natural-remedies-high-blood-pressure",
-      "name": "Natural Remedies for High Blood Pressure",
+      "name": "The Blood Pressure Handbook",
       "category": "Health & Wellness · E-book",
       "description": "A heart-healthy guide to naturally supporting healthy blood pressure through the DASH diet, movement, and stress-reduction strategies.",
       "price_cents": 1900,
@@ -52,9 +52,9 @@
     {
       "id": "cognitive-function-natural-remedies",
       "slug": "natural-remedies-cognitive-function",
-      "name": "Natural Remedies to Improve Cognitive Function",
+      "name": "The Brain Health Handbook",
       "category": "Health & Wellness · E-book",
-      "description": "A brain health guide to naturally sharpening memory and focus through nutrition, movement, sleep, and mentally engaging habits.",
+      "description": "A brain health guide to the nutrition, movement, sleep, and mental-engagement habits most associated with memory and focus.",
       "price_cents": 1900,
       "compare_at_cents": null,
       "cover": "ebook8.png",
