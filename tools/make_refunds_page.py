@@ -23,9 +23,9 @@ scripts = scripts.group(1) if scripts else '    <script src="../app.js"></script
 # nav highlighting: about.html marks its own link current; strip that here
 header = header.replace(' aria-current="page"', "")
 
-TITLE = "Refund Policy — All Sales Final on Digital Downloads — TUDEMM LLC"
+TITLE = "Refund Policy — All Sales Final on Digital Downloads — TUDEMM"
 DESC = (
-    "TUDEMM LLC refund policy for digital products: all sales are final and no "
+    "TUDEMM Digital Services refund policy for digital products: all sales are final and no "
     "refunds are issued on downloaded digital products. Limited exceptions for "
     "duplicate charges and non-delivery."
 )
@@ -54,7 +54,7 @@ MAIN = f"""
             <h2>All sales are final</h2>
             <p>
               <strong
-                >TUDEMM LLC does not issue refunds, returns, exchanges, or
+                >TUDEMM Digital Services does not issue refunds, returns, exchanges, or
                 cancellations on digital products once the product has been
                 downloaded or otherwise accessed.</strong
               >
@@ -167,7 +167,7 @@ MAIN = f"""
 
             <h2>Contact</h2>
             <p>
-              TUDEMM LLC &middot; Worthington, Ohio, United States<br />
+              TUDEMM Digital Services &middot; Worthington, Ohio, United States<br />
               <a href="mailto:info@tudemm.com">info@tudemm.com</a>
             </p>
           </div>

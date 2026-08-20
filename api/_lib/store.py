@@ -101,7 +101,7 @@ def deliver_download_email(to_email: str, product: dict) -> bool:
         f"Your e-book: {name}\n\n"
         f"Download it here (link expires in 24 hours):\n{link}\n\n"
         f"If your link expires, just reply to this email and we'll send a fresh one.\n"
-        f"\u2014 TUDEMM LLC"
+        f"\u2014 TUDEMM Digital Services"
     )
     html = (
         f"<h2>Thank you for your purchase!</h2>"
@@ -110,7 +110,7 @@ def deliver_download_email(to_email: str, product: dict) -> bool:
         f"border-radius:8px;text-decoration:none;display:inline-block'>Download your e-book</a></p>"
         f"<p style='color:#666;font-size:13px'>This link expires in 24 hours. "
         f"If it expires, reply to this email and we'll send a fresh one.</p>"
-        f"<p>\u2014 TUDEMM LLC</p>"
+        f"<p>\u2014 TUDEMM Digital Services</p>"
     )
     body = {
         "from": FROM_ADDR, "to": [to_email],

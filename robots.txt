@@ -1,4 +1,4 @@
-# robots.txt for tudemm.com — TUDEMM LLC
+# robots.txt for tudemm.com — TUDEMM Digital Services
 
 User-agent: *
 Allow: /

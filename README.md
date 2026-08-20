@@ -1,6 +1,6 @@
-# TUDEMM LLC — Website (Vercel-ready)
+# TUDEMM Digital Services — Website (Vercel-ready)
 
-Marketing site **and e-book store** for TUDEMM LLC — digital products,
+Marketing site **and e-book store** for TUDEMM Digital Services — digital products,
 professional web development, and SEO services. Static HTML/CSS/JS with
 serverless functions for the contact form and a secure Stripe checkout that
 delivers e-books by email after payment.

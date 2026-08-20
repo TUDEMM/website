@@ -91,7 +91,7 @@ class handler(BaseHTTPRequestHandler):
                     "amount": {"currency_code": currency, "value": amount},
                 }],
                 "application_context": {
-                    "brand_name": "TUDEMM LLC",
+                    "brand_name": "TUDEMM Digital Services",
                     "shipping_preference": "NO_SHIPPING",
                     "user_action": "PAY_NOW",
                 },

@@ -101,7 +101,8 @@ def main() -> None:
             "priceValidUntil": price_valid_until,
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition",
-            "seller": {"@type": "Organization", "name": "TUDEMM LLC", "url": SITE},
+            "seller": {"@type": "Organization", "name": "TUDEMM Digital Services",
+                       "legalName": "Tudemm Ltd Liability Company", "url": SITE},
         }
         product_schema = {
             "@context": "https://schema.org",
@@ -120,7 +121,8 @@ def main() -> None:
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
                 "url": f"{SITE}/pages/refunds",
             },
-            "publisher": {"@type": "Organization", "name": "TUDEMM LLC", "url": SITE},
+            "publisher": {"@type": "Organization", "name": "TUDEMM Digital Services",
+                       "legalName": "Tudemm Ltd Liability Company", "url": SITE},
             "isFamilyFriendly": True,
             "offers": offer,
             "additionalProperty": [
