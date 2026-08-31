@@ -12,7 +12,9 @@ import hashlib
 import hmac
 import json
 import os
+import sys
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -126,5 +128,15 @@ def deliver_download_email(to_email: str, product: dict) -> bool:
     try:
         with urllib.request.urlopen(req, timeout=10) as resp:
             return 200 <= resp.status < 300
-    except Exception:
+    except urllib.error.HTTPError as e:  # Resend rejected the send
+        # Print so the reason (bad API key, unverified domain, ...) reaches the
+        # runtime logs instead of vanishing behind a bare False.
+        try:
+            detail = e.read().decode("utf-8", "replace")[:500]
+        except Exception:  # noqa: BLE001
+            detail = ""
+        print(f"[deliver_download_email] Resend HTTP {e.code}: {detail}", file=sys.stderr)
+        return False
+    except Exception as e:  # noqa: BLE001
+        print(f"[deliver_download_email] {type(e).__name__}: {e}", file=sys.stderr)
         return False

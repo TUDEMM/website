@@ -35,6 +35,11 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(obj).encode("utf-8"))
 
+    def do_GET(self):
+        # Stripe only ever POSTs here. Without this, a browser visit falls through
+        # to the runtime's default handler and leaks a Python error page.
+        return self._respond(405, {"error": "Method not allowed. This endpoint accepts POST from Stripe only."})
+
     def do_POST(self):
         length = int(self.headers.get("Content-Length", 0))
         payload = self.rfile.read(length)
@@ -46,14 +51,39 @@ class handler(BaseHTTPRequestHandler):
         except Exception:
             return self._respond(400, {"error": "Invalid signature."})
 
-        if event["type"] == "checkout.session.completed":
-            session = event["data"]["object"]
-            product_id = (session.get("metadata") or {}).get("product_id")
-            email = (session.get("customer_details") or {}).get("email") \
-                or session.get("customer_email")
-            product = get_product(product_id) if product_id else None
-            if product and email:
-                deliver_download_email(email, product)
+        if event["type"] != "checkout.session.completed":
+            return self._respond(200, {"received": True, "ignored": event["type"]})
 
-        # Always 200 so Stripe doesn't retry endlessly.
-        return self._respond(200, {"received": True})
+        try:
+            # stripe-python >= 14 removed dict methods from StripeObject, so
+            # session.get(...) raises AttributeError. Normalise to a real dict
+            # first and this works on every library version.
+            session = event["data"]["object"]
+            data = session.to_dict() if hasattr(session, "to_dict") else dict(session)
+
+            product_id = (data.get("metadata") or {}).get("product_id")
+            email = (data.get("customer_details") or {}).get("email") \
+                or data.get("customer_email")
+
+            if not product_id:
+                # Nothing to fulfil and retrying will not help — accept and move on.
+                return self._respond(200, {"received": True, "note": "no product_id in metadata"})
+
+            product = get_product(product_id)
+            if not product:
+                return self._respond(200, {"received": True, "note": f"unknown product {product_id}"})
+            if not email:
+                return self._respond(200, {"received": True, "note": "no buyer email on session"})
+
+            if not deliver_download_email(email, product):
+                # A paid order that was NOT delivered must fail loudly: a 500 makes
+                # Stripe retry with backoff and shows red in Event deliveries,
+                # instead of silently losing the sale behind a 200.
+                return self._respond(500, {"error": "Delivery email failed to send.",
+                                           "product_id": product_id})
+
+            return self._respond(200, {"received": True, "delivered": product_id})
+
+        except Exception as e:  # noqa: BLE001
+            # Same reasoning: surface the failure so it is retried and visible.
+            return self._respond(500, {"error": f"Fulfilment failed: {type(e).__name__}: {e}"})
