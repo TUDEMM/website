@@ -122,7 +122,14 @@ def deliver_download_email(to_email: str, product: dict) -> bool:
     req = urllib.request.Request(
         "https://api.resend.com/emails",
         data=json.dumps(body).encode(),
-        headers={"Authorization": f"Bearer {RESEND_API_KEY}", "Content-Type": "application/json"},
+        headers={
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json",
+            # Resend sits behind Cloudflare, which blocks urllib's default
+            # "Python-urllib/3.x" agent with error 1010. Send a real one.
+            "User-Agent": "TUDEMM-Website/1.0 (+https://www.tudemm.com)",
+            "Accept": "application/json",
+        },
         method="POST",
     )
     try:
