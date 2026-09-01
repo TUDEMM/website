@@ -80,8 +80,7 @@ def verify_download_token(token: str):
 
 
 # --- Fulfillment: deliver the secure download link by email --------------------
-# Shared by BOTH the Stripe webhook and the PayPal capture, so every paid order
-# is delivered exactly the same way regardless of which payment method was used.
+# Used by the Stripe webhook to deliver every paid order the same way.
 
 SITE_URL = os.environ.get("SITE_URL", "https://tudemm.com").rstrip("/")
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
@@ -91,7 +90,7 @@ FROM_ADDR = os.environ.get("CONTACT_FROM", "TUDEMM <onboarding@resend.dev>")
 def deliver_download_email(to_email: str, product: dict) -> bool:
     """Mint a fresh expiring token and email the buyer their download link.
 
-    Returns True on a successful send. Safe to call from any payment provider.
+    Returns True on a successful send.
     """
     if not RESEND_API_KEY or not to_email or not product:
         return False

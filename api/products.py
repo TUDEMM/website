@@ -5,7 +5,6 @@ The products page calls this to render the grid, so adding a product is just an
 edit to data/products.json — no HTML changes needed.
 """
 import json
-import os
 import sys
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
@@ -13,9 +12,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _lib.store import load_catalog  # noqa: E402
 
-# PayPal client id is PUBLIC (safe to expose) — the secret stays server-side.
-PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID", "")
-PAYPAL_ENV = os.environ.get("PAYPAL_ENV", "sandbox").strip().lower()
 
 
 class handler(BaseHTTPRequestHandler):
@@ -43,7 +39,4 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({
             "currency": catalog.get("currency", "usd"),
             "products": public,
-            # Front-end uses these to decide whether to show the PayPal button.
-            "paypal_client_id": PAYPAL_CLIENT_ID,
-            "paypal_env": PAYPAL_ENV,
         }).encode("utf-8"))

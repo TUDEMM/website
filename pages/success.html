@@ -168,7 +168,7 @@
     <script>
       (function () {
         var params = new URLSearchParams(window.location.search);
-        var ref = params.get("session_id") || params.get("paypal");
+        var ref = params.get("session_id");
 
         /* Payment cleared but the delivery email failed. Say so plainly and
            point the buyer at support rather than letting them wait. */

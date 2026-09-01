@@ -3,7 +3,7 @@
 Stripe calls this URL after a payment. We verify the signature (so nobody can
 fake a "paid" event), then email the buyer a secure, expiring download link for
 the e-book they purchased. Delivery uses the shared deliver_download_email()
-helper, so Stripe and PayPal fulfill orders identically.
+helper.
 
 Env vars:
   STRIPE_SECRET_KEY        sk_live_... / sk_test_...
